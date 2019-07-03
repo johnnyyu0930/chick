@@ -1,42 +1,33 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
-import { getGymById } from '../actions'
+import Footer from "../components/Footer";
+import { showFilter } from '../actions';
+import Test from '../components/Test';
 
-class Example extends React.Component {
-  constructor(props) {
-    super(props);
+const Example = ({showFilter, filter,  match: { params } }) => {
+  let Component = null;
+  useEffect(()=>{
+    showFilter(params)
+  },[params])
+  
+  switch (filter) {
+    case 'test':
+      Component = <Test/>;
+      break;
   }
-
-  componentWillMount() {
-    this.props.getGymById();
-  }
-
-  componentDidUpdate() {
-   
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.isFetching === true ? (
-         <div>hello react</div>
-        ) : (
-          <div style={{ textAlign: "center", alignItems: "center" }}>
-            loading....
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {Component}
+      <Footer />
+    </div>
+  );
+};
 
 export default connect(
   state => ({
-    GymID: state.getIn(["gym", "GymID"]),
-    gym: state.getIn(["gym", "gym"]),
-    isFetching: state.getIn(["gym", "isFetching"])
+    filter: state.getIn(['gym', 'filter'])
   }),
   {
-    getGymById
+    showFilter
   }
 )(Example);

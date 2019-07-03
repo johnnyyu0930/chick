@@ -2,21 +2,13 @@ import Immutable from 'immutable';
 import { handleActions } from 'redux-actions';
 
 const InitialState = Immutable.fromJS({
-    GymID: '',
-    gym:{},
-    isFetching: false
+    filter: ''
 });
 
 const gym = handleActions({
-  SELECT_GYM_ID: (state, { id }) => {
-    return state.set('GymID', id)
-  },
-  GET_GYM_INFO: (state, { gym }) => {
-    return state.set('gym', gym)
-  },
-  GYM_INFO_IS_FETCHING: (state, { x }) => (
-    state.set('isFetching', x)
-  )
+  SHOW_FILTER: (state, { filter }) => {
+   return state.set('filter', filter)
+  }
 }, InitialState);
 
 export default gym;
