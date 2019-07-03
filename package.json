@@ -21,7 +21,9 @@
     },
     "homepage": "https://github.com/johnnyyu0930/chick.git#readme",
     "dependencies": {
+        "@react-firebase/auth": "^0.2.9",
         "autoprefixer": "^6.5.1",
+        "firebase": "^6.2.4",
         "immutable": "^4.0.0-rc.12",
         "parcel": "^1.12.3",
         "react": "^16.0.0",
